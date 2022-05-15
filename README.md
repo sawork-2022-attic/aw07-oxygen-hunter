@@ -94,3 +94,14 @@ Order: [id, time, List<item>]
 
 ## delivery
 
+order 提供一个 Supplier<OrderDto>，给 delivery
+
+delivery 提供一个 Consumer<OrderDto>，创建一个 DeliveryEntry
+
+user 可以通过 GET 传递 orderId 给 delivery，查询运输状态
+
+```
+data:
+DeliveryEntry: [orderId, status]
+
+```
