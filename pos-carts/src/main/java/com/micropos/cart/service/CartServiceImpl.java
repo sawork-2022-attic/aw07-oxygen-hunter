@@ -78,7 +78,9 @@ public class CartServiceImpl implements CartService {
     @Override
     public OrderDto checkout(Cart cart) {
         HttpEntity<String> request = buildCartRequest(cart);
-        return restTemplate.postForObject(ORDER_URL, request, OrderDto.class);
+        OrderDto orderDto = restTemplate.postForObject(ORDER_URL, request, OrderDto.class);
+        cartRepository.delete(cart); //remove cart from repository
+        return orderDto;
     }
 
     @Override
