@@ -10,6 +10,17 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+  cloud:
+    function:
+      definition: supplyOrder
+    stream:
+      function:
+        bindings:
+          supplyOrder-out-0: order
+      bindings:
+        order:
+          destination: order-channel
+
 server:
   port: 8086
 eureka:
