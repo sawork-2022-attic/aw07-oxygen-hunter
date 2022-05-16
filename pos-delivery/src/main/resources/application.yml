@@ -10,6 +10,17 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+  cloud:
+    function:
+      definition: receiveOrder
+    stream:
+      function:
+        bindings:
+          receiveOrder-in-0: order-receive
+      bindings:
+        order-receive:
+          destination: order-channel
+
 server:
   port: 8087
 eureka:

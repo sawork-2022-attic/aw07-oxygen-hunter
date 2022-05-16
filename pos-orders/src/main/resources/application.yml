@@ -12,13 +12,13 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
   cloud:
     function:
-      definition: supplyOrder
+      definition: sendOrder
     stream:
       function:
         bindings:
-          supplyOrder-out-0: order
+          supplyOrder-out-0: order-send
       bindings:
-        order:
+        order-send:
           destination: order-channel
 
 server:

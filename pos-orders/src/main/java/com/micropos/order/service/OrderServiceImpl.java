@@ -59,13 +59,13 @@ public class OrderServiceImpl implements OrderService {
         order.items(items);
         order = orderRepository.save(order);
         //orderDtoToSend = orderMapper.toOrderDto(order);
-        supplyOrder(order); // send order to rabbitmq
+        sendOrder(order); // send order to rabbitmq
         return order;
     }
 
-    private void supplyOrder(Order order) {
-        log.info("supply {}", orderMapper.toOrderDto(order).toString());
-        streamBridge.send("order", orderMapper.toOrderDto(order));
+    private void sendOrder(Order order) {
+        log.info("send {}", orderMapper.toOrderDto(order).toString());
+        streamBridge.send("order-send", orderMapper.toOrderDto(order));
     }
 
 
